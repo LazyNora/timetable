@@ -101,7 +101,7 @@ export default function ClassSearch({
 	const rowVirtualizer = useVirtualizer({
 		count: searchResults.length,
 		getScrollElement: () => parentRef.current,
-		estimateSize: () => 150,
+		estimateSize: () => 180,
 		overscan: 5,
 	});
 
@@ -132,12 +132,14 @@ export default function ClassSearch({
 						return (
 							<div
 								key={c.id}
+								ref={rowVirtualizer.measureElement}
+								data-index={virtualRow.index}
 								style={{
 									position: "absolute",
 									top: 0,
 									left: 0,
 									width: "100%",
-									height: `${virtualRow.size}px`,
+									// height: `${virtualRow.size}px`,
 									transform: `translateY(${virtualRow.start}px)`,
 								}}>
 								<div className="flex flex-col p-3 bg-white border">
@@ -145,7 +147,8 @@ export default function ClassSearch({
 										<div>
 											<div className="font-medium">{c.name}</div>
 											<div className="text-sm text-gray-600">ID: {c.id}</div>
-											<div className="text-sm text-gray-600">Instructor: {c.instructor}</div>
+											<div className="text-sm text-gray-600">GV: {c.instructor}</div>
+											<div className="text-sm text-gray-600">STC: {c.credits}</div>
 										</div>
 										<button
 											onClick={() =>
@@ -168,9 +171,9 @@ export default function ClassSearch({
 												<div>
 													{getDayOfWeek(s.day)}: Tiết {s.startPeriod}-{s.endPeriod}
 												</div>
-												<div>Room: {s.room}</div>
+												<div>Phòng: {s.room}</div>
 												<div>
-													Start: {s.startDate} - End: {s.endDate}
+													Từ: {s.startDate} - Đến: {s.endDate}
 												</div>
 											</div>
 										))}
