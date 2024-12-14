@@ -36,6 +36,7 @@ export function parseCSV(content: string): Promise<ParsedData> {
                   classMap.set(classId, {
                     id: classId,
                     name: values[2],
+                    credits: parseInt(values[3]),
                     instructor: values[45],
                     schedules: [schedule],
                   });
