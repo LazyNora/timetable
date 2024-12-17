@@ -1,3 +1,12 @@
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
 import { Class, TimeSlot } from "@/types/types";
 
 interface TimetableProps {
@@ -52,26 +61,28 @@ export default function Timetable({ classes, currentWeek, startDate }: Timetable
 	};
 
 	return (
-		<div className="border rounded-lg overflow-hidden mb-4">
-			<table className="w-full border-collapse">
-				<thead className="sticky top-0 bg-white z-10">
-					<tr className="bg-gray-50">
-						<th className="border p-2 w-24">Ca học</th>
+		<div className="overflow-hidden mb-4">
+			<Table className="w-full border-collapse">
+				<TableHeader className="bg-white">
+					<TableRow className="bg-gray-50">
+						<TableHead className="border">Ca học</TableHead>
 						{days.map((day) => (
-							<th key={day.id} className="border p-2 text-center">
+							<TableHead key={day.id} className="border p-2 text-center">
 								{day.name}
 								<br />
 								{getDateForDay(day.id)}
-							</th>
+							</TableHead>
 						))}
-					</tr>
-				</thead>
-				<tbody>
+					</TableRow>
+				</TableHeader>
+				<TableBody>
 					{timeSlots.map((slot) => (
-						<tr key={slot.id} className="h-40">
-							<td className="border p-2 font-medium text-center bg-gray-50">{slot.name}</td>
+						<TableRow key={slot.id} className="h-40">
+							<TableCell className="border p-2 font-medium text-center bg-gray-50">
+								{slot.name}
+							</TableCell>
 							{days.map((day) => (
-								<td key={`${day.id}-${slot.id}`} className="border p-2 align-top">
+								<TableCell key={`${day.id}-${slot.id}`} className="border p-2 align-top">
 									{getClassesForSlot(day.id, slot.periods).map((c) =>
 										c.schedules
 											.filter(
@@ -95,12 +106,12 @@ export default function Timetable({ classes, currentWeek, startDate }: Timetable
 												</div>
 											))
 									)}
-								</td>
+								</TableCell>
 							))}
-						</tr>
+						</TableRow>
 					))}
-				</tbody>
-			</table>
+				</TableBody>
+			</Table>
 		</div>
 	);
 }

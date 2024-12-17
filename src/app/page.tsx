@@ -150,7 +150,7 @@ export default function Home() {
 								onRemoveClass={handleRemoveClass}
 							/>
 							<Button onClick={handleSaveClasses} className="mb-4">
-								Save Selected Classes
+								Save
 							</Button>
 						</>
 					)}

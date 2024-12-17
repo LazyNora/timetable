@@ -69,7 +69,7 @@ export default function Filters({
 						<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-full p-0">
+				<PopoverContent className="w-[200px] md:w-full p-0">
 					<Command>
 						<CommandInput placeholder="Search subjects..." />
 						<CommandList>
@@ -106,7 +106,7 @@ export default function Filters({
 						<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-full p-0">
+				<PopoverContent className="w-[200px] md:w-full p-0">
 					<Command>
 						<CommandInput placeholder="Search instructors..." />
 						<CommandList>

@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Class, ClassSchedule } from "@/types/types";
+import { X } from "lucide-react";
 
 interface SelectedClassesSummaryProps {
 	selectedClasses: Class[];
@@ -30,8 +31,12 @@ export default function SelectedClassesSummary({
 								<div className="text-sm text-gray-600">GV: {cls.instructor}</div>
 								<div className="text-sm text-gray-600">STC: {cls.credits}</div>
 							</div>
-							<Button variant="destructive" size="sm" onClick={() => onRemoveClass(cls.id)}>
-								Remove
+							<Button
+								className="flex-shrink-0"
+								variant="destructive"
+								size="icon"
+								onClick={() => onRemoveClass(cls.id)}>
+								<X />
 							</Button>
 						</div>
 						<div className="text-sm text-gray-600">

@@ -3,6 +3,8 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Class, ClassSchedule } from "@/types/types";
 import LoadingSpinner from "./LoadingSpinner";
+import { Ban, Plus, X } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface Filters {
 	subject: string[];
@@ -110,7 +112,7 @@ export default function ClassSearch({
 	}
 
 	return (
-		<div className="mb-4">
+		<div className="mb-4 p-2 border rounded-lg bg-white">
 			<input
 				type="text"
 				placeholder="Search for a class"
@@ -152,20 +154,16 @@ export default function ClassSearch({
 											<div className="text-sm text-gray-600">GV: {c.instructor}</div>
 											<div className="text-sm text-gray-600">STC: {c.credits}</div>
 										</div>
-										<button
+										<Button
+											className="flex-shrink-0"
 											onClick={() =>
 												isSelected ? onRemoveClass(c.id) : !hasConflict && onAddClass(c)
 											}
-											className={`px-4 py-2 rounded ${
-												isSelected
-													? "bg-red-500 text-white hover:bg-red-600"
-													: hasConflict
-													? "bg-gray-300 cursor-not-allowed"
-													: "bg-blue-500 text-white hover:bg-blue-600"
-											}`}
+											size="icon"
+											variant={isSelected ? "destructive" : hasConflict ? "secondary" : "default"}
 											disabled={!isSelected && hasConflict}>
-											{isSelected ? "Remove" : hasConflict ? "Conflict" : "Add"}
-										</button>
+											{isSelected ? <X /> : hasConflict ? <Ban /> : <Plus />}
+										</Button>
 									</div>
 									<div className="text-sm text-gray-600">
 										{c.schedules.map((s, i) => (

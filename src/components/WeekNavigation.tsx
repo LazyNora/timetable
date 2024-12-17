@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface WeekNavigationProps {
@@ -32,17 +33,21 @@ export default function WeekNavigation({
 	return (
 		<div className="flex justify-between items-center mb-4">
 			<Button
+				size="icon"
 				onClick={() => onWeekChange(Math.max(1, currentWeek - 1))}
 				disabled={currentWeek === 1}>
-				Tuần Trước
+				<ChevronLeft size={24} />
 			</Button>
-			<span className="text-lg font-bold">
-				Tuần {currentWeek}: {getWeekDates()}
+			<span className="md:text-lg font-bold text-center">
+				Tuần {currentWeek}
+				<br />
+				<span className="text-sm md:text-base font-normal">{getWeekDates()}</span>
 			</span>
 			<Button
+				size="icon"
 				onClick={() => onWeekChange(Math.min(totalWeeks, currentWeek + 1))}
 				disabled={currentWeek === totalWeeks}>
-				Tuần Sau
+				<ChevronRight size={24} />
 			</Button>
 		</div>
 	);
