@@ -52,7 +52,7 @@ export default function Timetable({ classes, currentWeek, startDate }: Timetable
 	};
 
 	return (
-		<div className="border rounded-lg overflow-hidden">
+		<div className="border rounded-lg overflow-hidden mb-4">
 			<table className="w-full border-collapse">
 				<thead className="sticky top-0 bg-white z-10">
 					<tr className="bg-gray-50">

@@ -135,6 +135,8 @@ export default function ClassSearch({
 								ref={rowVirtualizer.measureElement}
 								data-index={virtualRow.index}
 								style={{
+									paddingRight: "1px",
+									paddingBlock: "0.5rem",
 									position: "absolute",
 									top: 0,
 									left: 0,
@@ -142,7 +144,7 @@ export default function ClassSearch({
 									// height: `${virtualRow.size}px`,
 									transform: `translateY(${virtualRow.start}px)`,
 								}}>
-								<div className="flex flex-col p-3 bg-white border">
+								<div className="flex flex-col p-3 bg-white border rounded-lg">
 									<div className="flex justify-between items-start mb-2">
 										<div>
 											<div className="font-medium">{c.name}</div>
