@@ -15,19 +15,33 @@ export function parseCSV(content: string): Promise<ParsedData> {
             const headers = e.data.headers;
             const classMap = new Map();
 
+            const IdIndex = headers.indexOf("Mã LHP");
+            const NameIndex = headers.indexOf("Tên môn học");
+            const CreditsIndex = headers.indexOf("Số TC");
+            const DayIndex = headers.indexOf("Thứ");
+            const StartPeriodIndex = headers.indexOf("Từ tiết");
+            const EndPeriodIndex = headers.indexOf("Đến tiết");
+            const StartDateIndex = headers.indexOf("Bắt đầu");
+            const EndDateIndex = headers.indexOf("Kết thúc");
+            const TotalPeriodsIndex = headers.indexOf("Tổng số tiết");
+            const RoomIndex = headers.indexOf("Phòng");
+            const InstructorIndex = headers.indexOf("Giảng viên\\r");
+            const WeeksIndexStart = headers.indexOf("T1");
+            const WeeksIndexEnd = EndDateIndex - 1;
+
             for (let i = 1; i < lines.length; i++) {
               const values = lines[i].split(',');
               if (values.length === headers.length) {
-                const classId = values[1];
+                const classId = values[IdIndex];
                 const schedule = {
-                  day: parseInt(values[5]),
-                  startPeriod: parseInt(values[6]),
-                  endPeriod: parseInt(values[7]),
-                  room: values[44],
-                  startDate: values[9],
-                  endDate: values[42],
-                  weeks: values.slice(10, 42).map((v) => v.trim()),
-                  totalPeriods: parseInt(values[43])
+                  day: parseInt(values[DayIndex]),
+                  startPeriod: parseInt(values[StartPeriodIndex]),
+                  endPeriod: parseInt(values[EndPeriodIndex]),
+                  room: values[RoomIndex],
+                  startDate: values[StartDateIndex],
+                  endDate: values[EndDateIndex],
+                  weeks: values.slice(WeeksIndexStart, WeeksIndexEnd + 1).map((v) => v.trim()),
+                  totalPeriods: parseInt(values[TotalPeriodsIndex])
                 };
 
                 if (classMap.has(classId)) {
@@ -35,9 +49,9 @@ export function parseCSV(content: string): Promise<ParsedData> {
                 } else {
                   classMap.set(classId, {
                     id: classId,
-                    name: values[2],
-                    credits: parseInt(values[3]),
-                    instructor: values[45],
+                    name: values[NameIndex],
+                    credits: parseInt(values[CreditsIndex]),
+                    instructor: values[InstructorIndex],
                     schedules: [schedule],
                   });
                 }
